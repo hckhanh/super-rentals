@@ -1,9 +1,9 @@
-interface DOMElement { }
-interface Promise<T> { }
-declare class Registry { }
-declare class Transition { }
-declare namespace Handlebars { class SafeString { } }
-declare class JQuery { }
+interface DOMElement {}
+interface Promise<T> {}
+declare class Registry {}
+declare class Transition {}
+declare namespace Handlebars { class SafeString {} }
+declare class JQuery {}
 
 
 declare module 'ember' {
@@ -79,11 +79,11 @@ declare module 'ember' {
     /**
      * Add an event listener
      */
-    function addListener(obj: any, eventName: string, target: {} | Function, method: Function | string, once: boolean);
+    function addListener(obj: any, eventName: string, target: {}|Function, method: Function|string, once: boolean);
     /**
      * Remove an event listener
      */
-    function removeListener(obj: any, eventName: string, target: {} | Function, method: Function | string);
+    function removeListener(obj: any, eventName: string, target: {}|Function, method: Function|string);
     /**
      * Send an event. The execution of suspended listeners is skipped, and once listeners are removed. A listener without a target is executed on the passed object. If an array of actions is not passed, the actions stored on the passed object are invoked.
      */
@@ -124,8 +124,8 @@ declare module 'ember' {
      * Specify a method that observes property changes.
      */
     function observer(propertyNames: string, func: Function): void;
-    function addObserver(obj: any, _path: string, target: {} | Function, method: Function | string);
-    function removeObserver(obj: any, path: string, target: {} | Function, method: Function | string);
+    function addObserver(obj: any, _path: string, target: {}|Function, method: Function|string);
+    function removeObserver(obj: any, path: string, target: {}|Function, method: Function|string);
     /**
      * Gets the value of a property on an object. If the property is computed, the function will be invoked. If the property is not defined but the object implements the `unknownProperty` method then that will be invoked.
      */
@@ -202,7 +202,7 @@ declare module 'ember' {
         /**
          * If present, overrides the application's `rootElement` property on the instance. This is useful for testing environment, where you might want to append the root view to a fixture area.
          */
-        rootElement: string | Element;
+        rootElement: string|Element;
         /**
          * If present, overrides the router's `location` property with this value. This is useful for environments where trying to modify the URL would be inappropriate.
          */
@@ -289,7 +289,7 @@ declare module 'ember' {
          */
         unbound();
         /**
-         * DEPRECATED:
+         * DEPRECATED: 
          * `{{view}}` inserts a new instance of an `Ember.View` into a template passing its options to the `Ember.View`'s `create` method and using the supplied block as the view's own template.
          */
         view();
@@ -489,7 +489,7 @@ declare module 'ember' {
       /**
        * Boot a new instance of `Ember.ApplicationInstance` for the current application and navigate it to the given `url`. Returns a `Promise` that resolves with the instance when the initial routing and rendering is complete, or rejects with any error that occured during the boot process.
        */
-      visit(url: string, options: ApplicationInstance.BootOptions): Promise<Ember.ApplicationInstance | Error>;
+      visit(url: string, options: ApplicationInstance.BootOptions): Promise<Ember.ApplicationInstance|Error>;
       /**
        * This creates a registry with the default Ember naming conventions.
        */
@@ -802,7 +802,7 @@ declare module 'ember' {
       /**
        * This will set the `to` property path to the specified value. It will not attempt to resolve this property path to an actual object until you connect the binding.
        */
-      to(path: string | any[]): Binding;
+      to(path: string|any[]): Binding;
       /**
        * Configures the binding as one way. A one-way binding will relay changes on the `from` side to the `to` side, but not the other way around. This means that if you change the `to` side directly, the `from` side may have a different value.
        */
@@ -877,7 +877,7 @@ declare module 'ember' {
       /**
        * A computed property that returns true if the provided dependent property is equal to the given value.
        */
-      equal(dependentKey: string, value: string | number | {}): ComputedProperty;
+      equal(dependentKey: string, value: string|number|{}): ComputedProperty;
       /**
        * A computed property that returns true if the provided dependent property is greater than the provided value.
        */
@@ -1051,18 +1051,18 @@ declare module 'ember' {
      */
     export class run {
       /**
-       * DEPRECATED:
+       * DEPRECATED: 
        * Replaces objects in an array with the passed objects.
        */
       replace(array: Ember.Array, idx: number, amt: number, objects: Ember.Array): Ember.Array;
       /**
        * If no run-loop is present, it creates a new one. If a run loop is present it will queue itself to run on the existing run-loops action queue.
        */
-      join(target: {}, method: Function | string, ...args: any[]): {};
+      join(target: {}, method: Function|string, ...args: any[]): {};
       /**
        * Allows you to specify which context to call the specified function in while adding the execution of that function to the Ember run loop. This ability makes this method a great way to asynchronously integrate third-party libraries into your Ember application.
        */
-      bind(target: {}, method: Function | string, ...args: any[]): Function;
+      bind(target: {}, method: Function|string, ...args: any[]): Function;
       /**
        * Begins a new RunLoop. Any deferred actions invoked after the begin will be buffered until you invoke a matching call to `run.end()`. This is a lower-level way to use a RunLoop instead of using `run()`.
        */
@@ -1074,24 +1074,24 @@ declare module 'ember' {
       /**
        * Adds the passed target/method and any optional arguments to the named queue to be executed at the end of the RunLoop. If you have not already started a RunLoop when calling this method one will be started for you automatically.
        */
-      schedule(queue: string, target: {}, method: string | Function, ...args: any[]): void;
+      schedule(queue: string, target: {}, method: string|Function, ...args: any[]): void;
       /**
        * Invokes the passed target/method and optional arguments after a specified period of time. The last parameter of this method must always be a number of milliseconds.
        */
-      later(target: {}, method: Function | string, ...args: any[]): any;
-      later(target: {}, method: Function | string, wait: number): any;
+      later(target: {}, method: Function|string, ...args: any[]): any;
+      later(target: {}, method: Function|string, wait: number): any;
       /**
        * Schedule a function to run one time during the current RunLoop. This is equivalent to calling `scheduleOnce` with the "actions" queue.
        */
-      once(target: {}, method: Function | string, ...args: any[]): {};
+      once(target: {}, method: Function|string, ...args: any[]): {};
       /**
        * Schedules a function to run one time in a given queue of the current RunLoop. Calling this method with the same queue/target/method combination will have no effect (past the initial call).
        */
-      scheduleOnce(queue: string, target: {}, method: Function | string, ...args: any[]): {};
+      scheduleOnce(queue: string, target: {}, method: Function|string, ...args: any[]): {};
       /**
        * Schedules an item to run from within a separate run loop, after control has been returned to the system. This is equivalent to calling `run.later` with a wait time of 1ms.
        */
-      next(target: {}, method: Function | string, ...args: any[]): {};
+      next(target: {}, method: Function|string, ...args: any[]): {};
       /**
        * Cancels a scheduled item. Must be a value returned by `run.later()`, `run.once()`, `run.scheduleOnce()`, `run.next()`, `run.debounce()`, or `run.throttle()`.
        */
@@ -1099,13 +1099,13 @@ declare module 'ember' {
       /**
        * Delay calling the target method until the debounce period has elapsed with no additional debounce calls. If `debounce` is called again before the specified time has elapsed, the timer is reset and the entire period must pass again before the target method is called.
        */
-      debounce(target: {}, method: Function | string, ...args: any[]): Ember.Array;
-      debounce(target: {}, method: Function | string, wait: number, immediate: boolean): Ember.Array;
+      debounce(target: {}, method: Function|string, ...args: any[]): Ember.Array;
+      debounce(target: {}, method: Function|string, wait: number, immediate: boolean): Ember.Array;
       /**
        * Ensure that the target method is never called more frequently than the specified spacing period. The target method is called immediately.
        */
-      throttle(target: {}, method: Function | string, ...args: any[]): Ember.Array;
-      throttle(target: {}, method: Function | string, spacing: number, immediate: boolean): Ember.Array;
+      throttle(target: {}, method: Function|string, ...args: any[]): Ember.Array;
+      throttle(target: {}, method: Function|string, spacing: number, immediate: boolean): Ember.Array;
     }
     export class ControllerMixin implements ActionHandler {
       /**
@@ -1239,7 +1239,7 @@ declare module 'ember' {
       /**
        * A hook you can implement to convert the URL into the model for this route.
        */
-      model(params: {}, transition: Transition): {} | Promise<any>;
+      model(params: {}, transition: Transition): {}|Promise<any>;
       /**
        * A hook you can implement to convert the route's model into parameters for the URL.
        */
@@ -1267,7 +1267,7 @@ declare module 'ember' {
       /**
        * Disconnects a view that has been rendered into an outlet.
        */
-      disconnectOutlet(options: {} | string);
+      disconnectOutlet(options: {}|string);
       /**
        * The collection of functions, keyed by name, available on this `ActionHandler` as action targets.
        */
@@ -2105,11 +2105,11 @@ declare module 'ember' {
       /**
        * Adds an observer on a property.
        */
-      addObserver(key: string, target: {}, method: string | Function);
+      addObserver(key: string, target: {}, method: string|Function);
       /**
        * Remove an observer you have previously registered on this object. Pass the same key, target, and method you passed to `addObserver()` and your target will no longer receive notifications.
        */
-      removeObserver(key: string, target: {}, method: string | Function);
+      removeObserver(key: string, target: {}, method: string|Function);
       /**
        * Retrieves the value of a property, or a default value in the case that the property returns `undefined`.
        */
@@ -2701,11 +2701,11 @@ declare module 'ember' {
       /**
        * Adds an observer on a property.
        */
-      addObserver(key: string, target: {}, method: string | Function);
+      addObserver(key: string, target: {}, method: string|Function);
       /**
        * Remove an observer you have previously registered on this object. Pass the same key, target, and method you passed to `addObserver()` and your target will no longer receive notifications.
        */
-      removeObserver(key: string, target: {}, method: string | Function);
+      removeObserver(key: string, target: {}, method: string|Function);
       /**
        * Retrieves the value of a property, or a default value in the case that the property returns `undefined`.
        */
@@ -2754,11 +2754,11 @@ declare module 'ember' {
       /**
        * Adds an observer on a property.
        */
-      addObserver(key: string, target: {}, method: string | Function);
+      addObserver(key: string, target: {}, method: string|Function);
       /**
        * Remove an observer you have previously registered on this object. Pass the same key, target, and method you passed to `addObserver()` and your target will no longer receive notifications.
        */
-      removeObserver(key: string, target: {}, method: string | Function);
+      removeObserver(key: string, target: {}, method: string|Function);
       /**
        * Retrieves the value of a property, or a default value in the case that the property returns `undefined`.
        */

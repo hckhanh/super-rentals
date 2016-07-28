@@ -8,7 +8,7 @@ test('should list available rentals', (assert) => {
 
   andThen(() => {
     assert.equal(find('.listing').length, 3, 'should see 3 listing tags');
-  })
+  });
 });
 
 test('should link to information about company', (assert) => {
