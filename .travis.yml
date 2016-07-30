@@ -27,8 +27,16 @@ script:
   - npm test
 
 after_success:
+  - cat $DEPLOY_KEY > .travis/deploy_key.pem
   - eval "$(ssh-agent -s)" #start the ssh agent
   - chmod 600 .travis/deploy_key.pem # this key should have push access
+
+  - npm run build:prod
+  - cp -a ./dist ../
+
   - git checkout gh-pages
-  - git rebase master
+  - rm -rf *
+  - cp ../dist/* .
+  - git add .
+  - git commit -m "Deploy to GitHub Pages"
   - git push origin gh-pages
