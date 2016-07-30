@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "4"
+  - "node"
 
 sudo: false
 
@@ -22,3 +22,10 @@ install:
 
 script:
   - npm test
+
+after_success:
+  - eval "$(ssh-agent -s)" #start the ssh agent
+  - chmod 600 .travis/deploy_key.pem # this key should have push access
+  - ssh-add .travis/deploy_key.pem
+  - git remote add deploy git@github.com:hckhanh/super-rentals.git
+  - git push deploy
